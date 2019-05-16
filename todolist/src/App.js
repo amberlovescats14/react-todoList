@@ -1,10 +1,11 @@
-import React from 'react';
+import React , { Component } from 'react';
 import './App.css';
 import Todos from './components/Todos';
 
 
-function App() {
-  App.state = {
+
+class App extends Component {
+  state = {
     todos: [
       {
         id: 1,
@@ -24,23 +25,26 @@ function App() {
     ]
 
   }
-  App.markComplete = (id) => {
-    this.setState({ todos : App.state.todos.map((todo)=> {
+
+  markComplete = (id) => {
+    this.setState({ todos: this.state.todos.map(todo => {
       if(todo.id === id){
         todo.completed = !todo.completed
       }
-      return todo
+      return todo;
     })  });
   }
 
 
-  console.log(App.state.todos)
+  render(){
   return (
     <div className="App">
     <h1>hello</h1>
-    <Todos todos={App.state.todos} markComplete={App.markComplete}/>
+    <Todos todos={this.state.todos} markComplete={this.markComplete}/>
     </div>
   );
+  }
 }
+
 
 export default App;
