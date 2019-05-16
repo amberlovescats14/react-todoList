@@ -22,12 +22,23 @@ function App() {
         completed: false,
       }
     ]
+
   }
+  App.markComplete = (id) => {
+    this.setState({ todos : App.state.todos.map((todo)=> {
+      if(todo.id === id){
+        todo.completed = !todo.completed
+      }
+      return todo
+    })  });
+  }
+
+
   console.log(App.state.todos)
   return (
     <div className="App">
     <h1>hello</h1>
-    <Todos todos={App.state.todos}/>
+    <Todos todos={App.state.todos} markComplete={App.markComplete}/>
     </div>
   );
 }
